@@ -1,25 +1,24 @@
 var rocket1: Rocket;
 var rocket2: Rocket;
+var thruster1 = [10, 30, 80];
+var thruster2 = [30, 40, 50, 50, 30, 10];
 
-function createRocket1() {
-    rocket1 = new Rocket("32WESSDS");
-    rocket1.addThruster(new Thruster(10));
-    rocket1.addThruster(new Thruster(30));
-    rocket1.addThruster(new Thruster(80));
-    (<HTMLInputElement>document.getElementById("cardRocket1")).classList.remove("d-none");
-    (<HTMLInputElement>document.getElementById("infoButton")).classList.remove("d-none");
-}
-
-function createRocket2() {
-    rocket2 = new Rocket("LDSFJA32");
-    rocket2.addThruster(new Thruster(30));
-    rocket2.addThruster(new Thruster(40));
-    rocket2.addThruster(new Thruster(50));
-    rocket2.addThruster(new Thruster(50));
-    rocket2.addThruster(new Thruster(30));
-    rocket2.addThruster(new Thruster(10));
-    (<HTMLInputElement>document.getElementById("cardRocket2")).classList.remove("d-none");
-    (<HTMLInputElement>document.getElementById("infoButton")).classList.remove("d-none");
+function createRocket(code: string) {
+    if (code == "32WESSDS") {
+        rocket1 = new Rocket(code);
+        for (let i = 0; i < thruster1.length; i++) {
+            rocket1.addThruster(new Thruster(thruster1[i]));
+        }
+        (<HTMLInputElement>document.getElementById("cardRocket1")).classList.remove("d-none");
+        (<HTMLInputElement>document.getElementById("infoButton")).classList.remove("d-none");
+    } else if (code == "LDSFJA32") {
+        rocket2 = new Rocket(code);
+        for (let i = 0; i < thruster2.length; i++) {
+            rocket2.addThruster(new Thruster(thruster2[i]));
+        }
+        (<HTMLInputElement>document.getElementById("cardRocket2")).classList.remove("d-none");
+        (<HTMLInputElement>document.getElementById("infoButton")).classList.remove("d-none");
+    }
 }
 
 function accelerateRocket(code: string, id: string) {

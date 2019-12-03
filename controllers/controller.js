@@ -1,24 +1,25 @@
 "use strict";
 var rocket1;
 var rocket2;
-function createRocket1() {
-    rocket1 = new Rocket("32WESSDS");
-    rocket1.addThruster(new Thruster(10));
-    rocket1.addThruster(new Thruster(30));
-    rocket1.addThruster(new Thruster(80));
-    document.getElementById("cardRocket1").classList.remove("d-none");
-    document.getElementById("infoButton").classList.remove("d-none");
-}
-function createRocket2() {
-    rocket2 = new Rocket("LDSFJA32");
-    rocket2.addThruster(new Thruster(30));
-    rocket2.addThruster(new Thruster(40));
-    rocket2.addThruster(new Thruster(50));
-    rocket2.addThruster(new Thruster(50));
-    rocket2.addThruster(new Thruster(30));
-    rocket2.addThruster(new Thruster(10));
-    document.getElementById("cardRocket2").classList.remove("d-none");
-    document.getElementById("infoButton").classList.remove("d-none");
+var thruster1 = [10, 30, 80];
+var thruster2 = [30, 40, 50, 50, 30, 10];
+function createRocket(code) {
+    if (code == "32WESSDS") {
+        rocket1 = new Rocket(code);
+        for (var i = 0; i < thruster1.length; i++) {
+            rocket1.addThruster(new Thruster(thruster1[i]));
+        }
+        document.getElementById("cardRocket1").classList.remove("d-none");
+        document.getElementById("infoButton").classList.remove("d-none");
+    }
+    else if (code == "LDSFJA32") {
+        rocket2 = new Rocket(code);
+        for (var i = 0; i < thruster2.length; i++) {
+            rocket2.addThruster(new Thruster(thruster2[i]));
+        }
+        document.getElementById("cardRocket2").classList.remove("d-none");
+        document.getElementById("infoButton").classList.remove("d-none");
+    }
 }
 function accelerateRocket(code, id) {
     if (code == rocket1.code) {
